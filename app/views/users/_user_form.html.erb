@@ -1,0 +1,48 @@
+<% if @user.errors.count > 0 %>
+There <%= @user.errors.count > 1 ? 'are' : 'is' %>
+<%= pluralize(@user.errors.count, 'error') %>: <br>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %> </li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_for @user do |f| %>
+  <%= f.label :username, 'username:' %>
+  <%= f.text_field :username %> <br>
+  <%= f.label :email, 'email:' %>
+  <%= f.text_field :email %> <br>
+  <%= f.label :password, 'password:' %>
+  <%= f.password_field :password %> <br>
+  <%= f.submit 'Submit' %>
+
+<% end %>
+
+<!--
+<%= form_tag('/users',method:'post') do %>
+  <%= label_tag 'user[username]', 'username:' %>
+  <%= text_field_tag 'user[username]' %> <br>
+  <%= label_tag 'user[email]', 'email:' %>
+  <%= text_field_tag 'user[email]' %> <br>
+  <%= label_tag 'user[password]', 'password:' %>
+  <%= password_field_tag 'user[password]' %> <br>
+  <%= submit_tag 'Submit' %> <br>
+<% end %>
+-->
+
+<!-- <form class="user_form" action="/users" method="post" accept-charset="UTF-8">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="user[username]" ">
+    username:
+  </label>
+  <input type="text" name="user[username]" value=""> <br>
+  <label for="user[username]" ">
+    email:
+  </label>
+  <input type="text" name="user[email]" value=""> <br>
+  <label for="user[username]" ">
+    password:
+  </label>
+  <input type="password" name="user[password]" value=""> <br>
+  <input type="submit" value="Register!">
+</form> -->
